@@ -17,7 +17,7 @@ Tambah Data Karyawan
     </a>
 </div>
 
-<form action="/employees" method="POST">
+<form action="/employees" method="POST" x-data x-on:submit="$refs.submitBtn.disabled = true">
     <div class="mb-5">
         <h2 class="fs-4 mb-4">Biodata Karyawan : </h2>
 
@@ -134,7 +134,7 @@ Tambah Data Karyawan
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Simpan</button>
+    <button type="submit" class="btn btn-primary" x-ref="submitBtn">Simpan</button>
 </form>
 
 <?= $this->endSection() ?>

@@ -10,26 +10,6 @@ Daftar Data Karyawan
 
 <?= $this->section("content") ?>
 
-<div class="modal fade" tabindex="-1" id="delete-employee-modal" aria-labelledby="delete-employee-modal-label" aria-hidden="true" x-data="{ deleteID: null }" x-on:set-delete-id.window="deleteID = $event.detail">
-    <div class="modal-dialog">
-        <div class="modal-content" x-id="['delete-form']">
-            <div class="modal-header">
-                <h5 class="modal-title" id="delete-employee-modal-label">Hapus data karyawan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Apakah Anda yakin? Data karyawan yang dihapus tidak dapat dikembalikan.</p>
-                <form method="POST" x-bind:action="`/employees/${deleteID}/delete`" x-bind:id="$id('delete-form')"></form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger" x-bind:form="$id('delete-form')">Hapus</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="d-flex mb-4">
     <div class="flex-grow-1"></div>
 
@@ -42,6 +22,26 @@ Daftar Data Karyawan
 <?php if (count($employees) === 0) : ?>
     <p class="text-center text-secondary fst-italic">Belum ada data karyawan.</p>
 <?php else : ?>
+
+    <div class="modal fade" tabindex="-1" id="delete-employee-modal" aria-labelledby="delete-employee-modal-label" aria-hidden="true" x-data="{ deleteID: null }" x-on:set-delete-id.window="deleteID = $event.detail">
+        <div class="modal-dialog">
+            <div class="modal-content" x-id="['delete-form']">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete-employee-modal-label">Hapus data karyawan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin? Data karyawan yang dihapus tidak dapat dikembalikan.</p>
+                    <form method="POST" x-bind:action="`/employees/${deleteID}/delete`" x-bind:id="$id('delete-form')" x-on:submit="$refs.submitBtn.disabled = true"></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" x-bind:form="$id('delete-form')" x-ref="submitBtn">Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-hover align-middle">
             <thead>
