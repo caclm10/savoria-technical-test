@@ -90,8 +90,8 @@ Tambah Data Karyawan
                 <thead>
                     <tr>
                         <th>Action</th>
-                        <th>Hubungan Keluarga</th>
-                        <th>Nama</th>
+                        <th style="min-width:166px">Hubungan Keluarga</th>
+                        <th style="min-width:180px">Nama</th>
                         <th>Tanggal Lahir</th>
                     </tr>
                 </thead>

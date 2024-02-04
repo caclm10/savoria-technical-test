@@ -77,7 +77,7 @@ Data Karyawan
     <div>
         <h2 class="fs-4 mb-4">Anggota Keluarga</h2>
         <div class="table-responsive">
-            <table class="table-detail">
+            <table class="table">
                 <thead>
                     <th scope="col">Hubungan</th>
                     <th scope="col">Nama</th>
@@ -88,7 +88,9 @@ Data Karyawan
                         <tr>
                             <td><?= $familyRelationships[$family["hubungan"]] ?></td>
                             <td><?= $family["nama"] ?></td>
-                            <td><?= $family["tanggal_lahir"] ?></td>
+                            <td>
+                                <?= idDateFormat($family["tanggal_lahir"]) ?> (<?= calculateAge($family["tanggal_lahir"]) ?> tahun)
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
