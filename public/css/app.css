@@ -23,6 +23,11 @@
     vertical-align: top;
 }
 
+.table-form td:not(:first-child)>* {
+    margin: 0 auto;
+    width: 200px;
+}
+
 .table-detail th {
     font-weight: 700;
     width: 30%;

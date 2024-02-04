@@ -51,7 +51,6 @@ class Employees extends BaseController
      */
     public function create()
     {
-        // dd($this->request->getPost());
         $familiesCount = (int) $this->request->getPost("jumlah_keluarga");
 
         $rules = [...$this->getBaseRules(), ...$this->getFamiliyRules($familiesCount)];
@@ -183,6 +182,14 @@ class Employees extends BaseController
      */
     public function delete(string $id)
     {
+        $employee = $this->employeeModel->find($id);
+        if (!$employee) {
+            return redirect()->back()->with("notif", [
+                "type" => "error",
+                "message" => "Data karyawan tidak ditemukan"
+            ]);
+        }
+
         $this->employeeModel->delete($id);
 
         return redirect()
@@ -245,7 +252,7 @@ class Employees extends BaseController
             ],
             'tanggal_lahir' => [
                 'label' => 'tanggal lahir',
-                'rules' => ['required', 'valid_date[Y-m-d]']
+                'rules' => ['required', 'valid_date[Y-m-d]', "minimum_age[18]"]
             ],
             'alamat' => [
                 'rules' => ['required']
@@ -256,7 +263,7 @@ class Employees extends BaseController
             ],
             'valid_to' => [
                 'label' => 'valid hingga',
-                'rules' => ['permit_empty', 'valid_date[Y-m-d]']
+                'rules' => ['permit_empty', 'valid_date[Y-m-d]', 'after_date[' . Time::now()->addYears(1)->toDateString() . ']']
             ]
         ];
     }
@@ -288,7 +295,7 @@ class Employees extends BaseController
             ],
             "tanggal_lahir_keluarga.0" => [
                 "label" => "tanggal lahir keluarga",
-                "rules" => ["required"],
+                "rules" => ["required", "minimum_age[0]"],
             ]
         ];
     }
