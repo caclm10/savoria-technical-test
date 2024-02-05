@@ -134,11 +134,17 @@ document.addEventListener("alpine:init", () => {
         },
 
         _populateDefaults(index = 0) {
+            let tanggalLahir = this._getDefault("tanggal_lahir", index)
+
+            if (tanggalLahir) {
+                tanggalLahir = (new Date(tanggalLahir)).toISOString().split("T")[0]
+            }
+
             this.elements[index].old = {
                 id: this._getDefault("id", index),
                 hubunganKeluarga: this._getDefault("hubungan", index),
                 namaKeluarga: this._getDefault("nama", index),
-                tanggalLahirKeluarga: this._getDefault("tanggal_lahir", index),
+                tanggalLahirKeluarga: tanggalLahir,
             }
         },
 

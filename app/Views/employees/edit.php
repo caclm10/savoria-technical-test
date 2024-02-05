@@ -38,7 +38,7 @@ Edit Data Karyawan
                         <label for="tanggal-lahir" class="col-custom-label">Tanggal Lahir</label>
                         <span class="col-md-1 col-form-label d-none d-md-block">:</span>
                         <div class="col-md-6">
-                            <input type="date" id="tanggal-lahir" name="tanggal_lahir" class="form-control <?= hasValidationError("tanggal_lahir") ? 'is-invalid' : '' ?>" value="<?= old("tanggal_lahir", $employee["tanggal_lahir"]) ?>">
+                            <input type="date" id="tanggal-lahir" name="tanggal_lahir" class="form-control <?= hasValidationError("tanggal_lahir") ? 'is-invalid' : '' ?>" value="<?= old("tanggal_lahir", toHTMLDate($employee["tanggal_lahir"])) ?>">
                             <p class=" invalid-feedback text-start"><?= getValidationError("tanggal_lahir") ?></p>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ Edit Data Karyawan
                         <label for="valid-to" class="col-custom-label">Valid hingga</label>
                         <span class="col-md-1 col-form-label d-none d-md-block">:</span>
                         <div class="col-md-6">
-                            <input type="date" id="valid-to" name="valid_to" class="form-control <?= hasValidationError("valid_to") ? 'is-invalid' : '' ?>" value="<?= old("valid_to", $employee["valid_to"]) ?>">
+                            <input type="date" id="valid-to" name="valid_to" class="form-control <?= hasValidationError("valid_to") ? 'is-invalid' : '' ?>" value="<?= old("valid_to", toHTMLDate($employee["valid_to"])) ?>">
                             <p class=" invalid-feedback text-start"><?= getValidationError("valid_to") ?></p>
                         </div>
                     </div>

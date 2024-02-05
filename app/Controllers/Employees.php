@@ -15,7 +15,7 @@ class Employees extends BaseController
 
     public function __construct()
     {
-        helper(["json", "session"]);
+        helper(["json", "session", "date"]);
 
         $this->employeeModel = new EmployeeModel();
         $this->employeeFamilyModel = new EmployeeFamilyModel();
@@ -96,7 +96,6 @@ class Employees extends BaseController
      */
     public function show(string $id)
     {
-        helper(["date"]);
         $employee = $this->employeeModel->findWithFamilies($id, $this->employeeFamilyModel);
 
         $familyRelationships = array_column($this->getFamilyRelationships(), "label", "value");
@@ -113,7 +112,7 @@ class Employees extends BaseController
         $familyRelationships = $this->getFamilyRelationships();
 
         $employee = $this->employeeModel->findWithFamilies($id, $this->employeeFamilyModel);
-
+        dd($employee);
         return view("employees/edit", compact("employee", "familyRelationships"));
     }
 
